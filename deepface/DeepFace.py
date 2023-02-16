@@ -41,7 +41,6 @@ if tf_version == 2:
 
 
 def build_model(model_name):
-
     """
     This function builds a deepface model
     Parameters:
@@ -96,7 +95,6 @@ def verify(
     align=True,
     normalization="base",
 ):
-
     """
     This function verifies an image pair is same person or different persons. In the background,
     verification function represents facial images as vectors and then calculates the similarity
@@ -230,8 +228,8 @@ def analyze(
     detector_backend="opencv",
     align=True,
     silent=False,
+    models={},
 ):
-
     """
     This function analyzes facial attributes including age, gender, emotion and race.
     In the background, analysis function builds convolutional neural network models to
@@ -297,16 +295,16 @@ def analyze(
     # ---------------------------------
     # build models
     models = {}
-    if "emotion" in actions:
+    if "emotion" in actions and "emotion" not in models:
         models["emotion"] = build_model("Emotion")
 
-    if "age" in actions:
+    if "age" in actions and "age" not in models:
         models["age"] = build_model("Age")
 
-    if "gender" in actions:
+    if "gender" in actions and "gender" not in models:
         models["gender"] = build_model("Gender")
 
-    if "race" in actions:
+    if "race" in actions and "race" not in models:
         models["race"] = build_model("Race")
     # ---------------------------------
     resp_objects = []
@@ -392,7 +390,6 @@ def find(
     normalization="base",
     silent=False,
 ):
-
     """
     This function applies verification several times and find the identities in a database
 
@@ -438,7 +435,6 @@ def find(
     file_name = file_name.replace("-", "_").lower()
 
     if path.exists(db_path + "/" + file_name):
-
         if not silent:
             print(
                 f"WARNING: Representations for images in {db_path} folder were previously stored"
@@ -606,7 +602,6 @@ def represent(
     align=True,
     normalization="base",
 ):
-
     """
     This function represents facial images as vectors. The function uses convolutional neural
     networks models to generate vector embeddings.
@@ -699,7 +694,6 @@ def stream(
     time_threshold=5,
     frame_threshold=5,
 ):
-
     """
     This function applies real time face recognition and facial attribute analysis
 
@@ -754,7 +748,6 @@ def extract_faces(
     align=True,
     grayscale=False,
 ):
-
     """
     This function applies pre-processing stages of a face recognition pipeline
     including detection and alignment

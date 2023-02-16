@@ -90,7 +90,7 @@ def analyze():
     actions = input_args.get("actions", ["age", "gender", "emotion", "race"])
 
     demographies = service.analyze(
-        img_path=img_path,
+        img_path=img_path[0],  # TODO: Add a loop to analyze a list of input images
         actions=actions,
         detector_backend=detector_backend,
         enforce_detection=enforce_detection,
