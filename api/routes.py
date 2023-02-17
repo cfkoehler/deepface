@@ -89,12 +89,16 @@ def analyze():
     align = input_args.get("align", True)
     actions = input_args.get("actions", ["age", "gender", "emotion", "race"])
 
-    demographies = service.analyze(
-        img_path=img_path[0],  # TODO: Add a loop to analyze a list of input images
-        actions=actions,
-        detector_backend=detector_backend,
-        enforce_detection=enforce_detection,
-        align=align,
-    )
+    # For each image in post analyze
+    fullDemographies = []
+    for img in img_path:
+        demographies = service.analyze(
+            img_path=img,
+            actions=actions,
+            detector_backend=detector_backend,
+            enforce_detection=enforce_detection,
+            align=align,
+        )
+        fullDemographies.append(demographies)
 
-    return demographies
+    return fullDemographies
