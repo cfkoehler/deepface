@@ -9,6 +9,13 @@ def home():
     return "<h1>Welcome to DeepFace API!</h1>"
 
 
+@blueprint.route("/health")
+def health():
+    # TODO: Return what models are loaded
+    # TODO: Return count of images analyzed
+    return "<h1>DeepFace Server Health Check</h1>"
+
+
 @blueprint.route("/represent", methods=["POST"])
 def represent():
     input_args = request.get_json()

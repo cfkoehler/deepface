@@ -97,7 +97,6 @@ def extract_faces(
     enforce_detection=True,
     align=True,
 ):
-
     # this is going to store a list of img itself (numpy), it region and confidence
     extracted_faces = []
 
@@ -123,7 +122,6 @@ def extract_faces(
 
     for current_img, current_region, confidence in face_objs:
         if current_img.shape[0] > 0 and current_img.shape[1] > 0:
-
             if grayscale is True:
                 current_img = cv2.cvtColor(current_img, cv2.COLOR_BGR2GRAY)
 
@@ -185,7 +183,6 @@ def extract_faces(
 
 
 def normalize_input(img, normalization="base"):
-
     # issue 131 declares that some normalization techniques improves the accuracy
 
     if normalization == "base":
@@ -233,7 +230,6 @@ def normalize_input(img, normalization="base"):
 
 
 def find_target_size(model_name):
-
     target_sizes = {
         "VGG-Face": (224, 224),
         "Facenet": (160, 160),

@@ -3,7 +3,7 @@ version: '3'
 services:
   deepface-server:
     container_name: deepface-server
-    image: connorkoehler/deepface-server:server-1.0.1-SNAPSHOT
+    image: connorkoehler/deepface-server:server-1.0.0
     ports:
       - "6000:5000"
     volumes:
@@ -12,7 +12,7 @@ services:
       - deepface-models
   deepface-models:
     container_name: deepface-models
-    image: connorkoehler/deepface-server:models-1.0.1-SNAPSHOT
+    image: connorkoehler/deepface-server:models-1.0.0
     volumes:
       - models:/root/.deepface/weights
 
